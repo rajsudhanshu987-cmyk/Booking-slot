@@ -20,3 +20,40 @@ body {
   text-align: center;
   border-radius: 0.5rem;
 }
+
+.header h1 {
+  font-weight: 700;
+}
+
+.stats {
+  background-color: var(--secondary-color);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-around;
+  margin-top: -3rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--light-text-color);
+}
+
+
+
+.card {
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
