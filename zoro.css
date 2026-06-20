@@ -67,3 +67,23 @@ body {
   background-color: #15674a;
   border-color: #15674a;
 }
+
+.slot {
+  background-color: var(--secondary-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.slot:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+.slot.disabled {
+  background-color: #f0f0f0;
+  color: var(--light-text-color);
+  cursor: not-allowed;
+}
