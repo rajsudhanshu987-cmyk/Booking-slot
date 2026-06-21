@@ -87,3 +87,15 @@ body {
   color: var(--light-text-color);
   cursor: not-allowed;
 }
+
+.booking {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.booking:last-child {
+  border-bottom: none;
+}
