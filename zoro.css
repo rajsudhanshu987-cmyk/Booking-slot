@@ -99,3 +99,20 @@ body {
 .booking:last-child {
   border-bottom: none;
 }
+
+.header .qs-title {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #a5b4fc, #c7d2fe, #f5f3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.qs-subtitle {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 540px;
+}
