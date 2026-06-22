@@ -133,3 +133,15 @@ body {
   border-radius: 50%;
   box-shadow: 0 0 10px #22c55e;
 }
+
+.stat-card {
+  border-radius: 1.25rem;
+  background: #fff;
+  padding: 1.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
