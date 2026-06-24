@@ -108,6 +108,7 @@ body {
 
 .gradient-text {
   background: linear-gradient(to right, #a5b4fc, #c7d2fe, #f5f3ff);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -144,4 +145,17 @@ body {
 
 .stat-card:hover {
   transform: translateY(-3px);
+}
+
+.slot-card.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background: #edf2f7;
+}
+
+.booking-card {
+  border-radius: 0.75rem;
+  border: 1px solid #cbd5e0;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
