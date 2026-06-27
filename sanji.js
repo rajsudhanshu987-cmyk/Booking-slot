@@ -17,3 +17,9 @@ const statProviders = document.getElementById("statProviders");
 const statBookings = document.getElementById("statBookings");
 const statClock = document.getElementById("statClock");
 const lastSync = document.getElementById("lastSync");
+
+
+const confirmModal = new bootstrap.Modal (document.getElementById("confirmModal"));
+const confirmTitle = document.getElementById("confirmTitle");
+const notesInput = document.getElementById("notesInput");
+const confirmBtn = document.getElementById("confirmBtn");
