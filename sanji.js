@@ -23,3 +23,16 @@ const confirmModal = new bootstrap.Modal (document.getElementById("confirmModal"
 const confirmTitle = document.getElementById("confirmTitle");
 const notesInput = document.getElementById("notesInput");
 const confirmBtn = document.getElementById("confirmBtn");
+
+
+const state = {
+    providers: [],
+    nowUtc: null,
+    target: null,
+    bookings: [],
+    pendingSlot: null,
+};
+
+function saveBookings() {
+    localStorage.setItem("quick-slots",JSON.stringify(state.bookings));
+}
