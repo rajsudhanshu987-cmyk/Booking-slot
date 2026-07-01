@@ -41,3 +41,19 @@ function saveBookings() {
 function readBookings() {
     state.bookings = JSON.parse(localStorage.getItem("quick-slots") || "[]");
 }
+
+async function fetchProviders() {
+    providerSelect.Disabled = true;
+    providerSelect.innerHTML = `<option>Loading roaster...</option>`;
+
+    try {
+        const res = await fetch(rosterUrl)
+        const providers = await res.json();
+        state.providers = providers;
+        renderProviderOptions();
+    } catch (error) {
+        console.error("Error fetching providers:", error);
+        providerSelect.innerHTML = `<option value="">Error loading providers</option>`;
+    } finally {
+        providerSelect.Disabled = false;
+    }
