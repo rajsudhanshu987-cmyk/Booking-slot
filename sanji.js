@@ -35,4 +35,9 @@ const state = {
 
 function saveBookings() {
     localStorage.setItem("quick-slots",JSON.stringify(state.bookings));
+    statBookings.textContent = state.bookings.length;
+}
+
+function readBookings() {
+    state.bookings = JSON.parse(localStorage.getItem("quick-slots") || "[]");
 }
