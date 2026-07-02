@@ -48,21 +48,20 @@ async function fetchProviders() {
 
     try {
         const res = await fetch(rosterUrl)
-        const providers = await res.json();
+        const data = await res.json();
 
-        state.providers = providers.map((person) => ({
+        state.providers = data.map((person) => ({
             id: person.id,
             name: person.name,
             specialty: person.company?.bs || "General",
             city: person.address?.city  || "remote",
           
         }));
-        
-        renderProviderOptions();
-    } catch (error) {
-        console.error("Error fetching providers:", error);
-        providerSelect.innerHTML = `<option value="">Error loading providers</option>`;
-    } finally {
-        providerSelect.Disabled = false;
-    }
+        statProviders.textContent = state.providers.length;
+        renderProviderSelect();
+    } catch (err) {
+        console.error("Error fetching providers:", err);
+        providerSelect.innerHTML = `<option>Error loading name...</option>`;
+        console.log(err);
+    } 
 };
