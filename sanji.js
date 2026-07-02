@@ -49,7 +49,15 @@ async function fetchProviders() {
     try {
         const res = await fetch(rosterUrl)
         const providers = await res.json();
-        state.providers = providers;
+
+        state.providers = providers.map((person) => ({
+            id: person.id,
+            name: person.name,
+            specialty: person.company?.bs || "General",
+            city: person.address?.city  || "remote",
+          
+        }));
+        
         renderProviderOptions();
     } catch (error) {
         console.error("Error fetching providers:", error);
@@ -57,3 +65,4 @@ async function fetchProviders() {
     } finally {
         providerSelect.Disabled = false;
     }
+};
