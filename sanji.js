@@ -64,4 +64,14 @@ async function fetchProviders() {
         providerSelect.innerHTML = `<option>Error loading name...</option>`;
         console.log(err);
     } 
-};
+}
+
+function renderProviderSelect() {
+    providerSelect.Disabled = false;
+    providerSelect.innerHTML = `<option value="">Select a provider</option>`;
+    state.providers.forEach((provider) => {
+        const option = document.createElement("option");
+        option.value = provider.id;
+        option.textContent = `${provider.name} (${provider.specialty})`;
+        providerSelect.appendChild(option);
+    })
