@@ -68,10 +68,12 @@ async function fetchProviders() {
 
 function renderProviderSelect() {
     providerSelect.Disabled = false;
-    providerSelect.innerHTML = `<option value="">Select a provider</option>`;
-    state.providers.forEach((provider) => {
-        const option = document.createElement("option");
-        option.value = provider.id;
-        option.textContent = `${provider.name} (${provider.specialty})`;
-        providerSelect.appendChild(option);
-    })
+    providerSelect.innerHTML = `<option value ="">Select a provider</option>`;
+
+    state.providers.forEach((p) => {
+        const opt = document.createElement("option");
+        opt.value = p.id;
+        opt.textContent = `${p.name} (${p.specialty})`;
+        providerSelect.appendChild(opt);
+    });
+}
