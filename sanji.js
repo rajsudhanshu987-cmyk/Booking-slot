@@ -77,3 +77,14 @@ function renderProviderSelect() {
         providerSelect.appendChild(opt);
     });
 }
+
+async function syncClock() {
+    try {
+        const res = await fetch(clockUrl);
+        const data = await res.json();
+        state.nowUtc = new Date(data.utc_datetime);
+        statClock.textContent = state.nowUtc.toLocaleTimeString();
+    } catch (err) {
+        console.error("Error syncing clock:", err);
+    }
+}
