@@ -90,5 +90,5 @@ async function syncClock() {
          });
          lastSync.textContent = `Last synced ${new Date().toLocaleTimeString("en-IN"
          )}`; 
-        } catch (err) {
+        } catch (err){
             console
