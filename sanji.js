@@ -91,4 +91,11 @@ async function syncClock() {
          lastSync.textContent = `Last synced ${new Date().toLocaleTimeString("en-IN"
          )}`; 
         } catch (err) {
-            console
+            console.warn("Clock sync failed, falling back to client time", err);
+            state.nowUtc = new Date();
+            statClock.textContent = state.nowUtc.toLocaleTimeString("en-IN");
+            lastSync.textContent = `Fallback to client ${new Date().toLocaleTimeString(
+                "en-IN"
+            )}`;
+        }
+    }
