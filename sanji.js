@@ -105,3 +105,19 @@ async function syncClock() {
         dateInput.min = today;
         dateInput.value = today;
     }
+
+
+    function buildSlots(date) {
+        const slots = [];
+
+        for (let hour = 9; hour <= 17; hour++) {
+            ["00", "30"].forEach((minute) => {
+                const label = `${String(hour).padStart(2, "0")}:${minute}`;
+                slots.push(label);
+            });
+    }
+    return slots.map((label) => ({
+        label,
+        disabled: isSlotDisabled(date, label),
+    }));
+}
