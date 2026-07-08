@@ -121,3 +121,14 @@ async function syncClock() {
         disabled: isSlotDisabled(date, label),
     }));
 }
+
+function isSlotDisabled() {
+    const targetDate = new Date(`${date}T${slotLabel}:00+05:30`);
+    const now = state.nowUtc || new Date();
+
+    if (targetDate < now) {
+        return true;
+    }
+    const alreadyBooked = state.bookings.some(item => item.date === date && item.slot === slotLabel);
+    return alreadyBooked;
+}
