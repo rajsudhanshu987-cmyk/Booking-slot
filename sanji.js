@@ -129,11 +129,17 @@ function isSlotDisabled() {
     if (targetDate < now) {
         return true;
     }
-    const alreadyBooked = state.bookings.some(item ) 
-    => {
+    const alreadyBooked = state.bookings.some((item)   => {
+  
         item.date === date && 
         item.slot === slotLabel &&
         item.providerId === state.target?.providersId;
     });
     return alreadyBooked;
 }
+
+function renderSlots(providerId, date) {
+    const provider = state.providers.find((p) => p.id === Number(providerId));
+
+    if (!provider || !date) {
+        slotsGrid.innerHTML = `<div class="col-12
