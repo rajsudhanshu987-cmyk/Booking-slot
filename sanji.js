@@ -147,3 +147,9 @@ function renderSlots(providerId, date) {
     }
 
     state.target = { providerId: provider.id, providerName: provider.name, date };
+
+    slotsHeadline.textContent = `Slots for ${provider.name}`;
+    slotMeta.textContent = `${new Data(
+        date
+    ).toDateString()} 
+}`
