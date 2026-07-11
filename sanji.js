@@ -142,4 +142,8 @@ function renderSlots(providerId, date) {
     const provider = state.providers.find((p) => p.id === Number(providerId));
 
     if (!provider || !date) {
-        slotsGrid.innerHTML = `<div class="col-12
+        slotsGrid.innerHTML = `<div class="col-12 text-center text-secondary">Select a provider and date to view availability</div>`;
+        return;
+    }
+
+    state.target = { providerId: provider.id, providerName: provider.name, date };
