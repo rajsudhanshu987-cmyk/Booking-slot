@@ -149,7 +149,7 @@ function renderSlots(providerId, date) {
     state.target = { providerId: provider.id, providerName: provider.name, date };
 
     slotsHeadline.textContent = `Slots for ${provider.name}`;
-    slotMeta.textContent = `${new Data(
+    slotMeta.textContent = `${new Date(
         date
     ).toDateString()} refreshed ${new Date().toLocaleTimeString("en-IN")}`;
 
@@ -161,9 +161,20 @@ function renderSlots(providerId, date) {
         col.className = "col-6 col-xl-4";
 
         const card = document.createElement("div");
-        card.className = `slot-card h-100 ${slot.disabled ? "disabled" : "available"}`;
-        card.textContent = slot.label;
-        col.appendChild(card);
-        slotsGrid.appendChild(col);
-    });
+          card.className = `slot-card h-100 ${slot.disabled ? "disabled" : ""}`;
+    card.innerHTML = `
+      <div class="fw-semibold">${slot.label}</div>
+      <div class="small text-secondary">${
+        slot.disabled ? "Unavailable" : "Tap to book"
+      }</div>
+    `;
+
+   
+    if (!slot.disabled) {
+      card.onclick = () => openModal(provider, date, slot.label);
+    }
+
+    col.appendChild(card);
+    slotsGrid.appendChild(col);
+  });
 }
