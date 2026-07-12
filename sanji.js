@@ -161,5 +161,9 @@ function renderSlots(providerId, date) {
         col.className = "col-6 col-xl-4";
 
         const card = document.createElement("div");
-        
-}`
+        card.className = `slot-card h-100 ${slot.disabled ? "disabled" : "available"}`;
+        card.textContent = slot.label;
+        col.appendChild(card);
+        slotsGrid.appendChild(col);
+    });
+}
