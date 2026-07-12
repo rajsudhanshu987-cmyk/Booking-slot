@@ -151,5 +151,15 @@ function renderSlots(providerId, date) {
     slotsHeadline.textContent = `Slots for ${provider.name}`;
     slotMeta.textContent = `${new Data(
         date
-    ).toDateString()} 
+    ).toDateString()} refreshed ${new Date().toLocaleTimeString("en-IN")}`;
+
+    const slots = buildSlots (date);
+    slotsGrid.innerHTML = "";
+
+    slots.forEach((slot) => {
+        const col = document.createElement("div");
+        col.className = "col-6 col-xl-4";
+
+        const card = document.createElement("div");
+        
 }`
