@@ -66,6 +66,9 @@ async function fetchProviders() {
     } 
 }
 
+fetchProviders ();
+
+
 function renderProviderSelect() {
     providerSelect.Disabled = false;
     providerSelect.innerHTML = `<option value ="">Select a provider</option>`;
@@ -99,6 +102,10 @@ async function syncClock() {
             )}`;
         }
     }
+
+
+syncClock();
+
 
     function setMinDate() {
         const today = new Date().toISOString().split("T")[0];
@@ -201,4 +208,9 @@ const payload = {
     notes: notesInput.value.trim(),
 };
 state.bookings.push(payload);
+saveBookings();
+renderSlots(state.pendingSlot.provider.id, state.pendingSlot.date);
+readBookings();
+
+confirmModal.hide();
 });
