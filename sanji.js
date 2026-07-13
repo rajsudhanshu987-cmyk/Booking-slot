@@ -186,3 +186,19 @@ function openModal(provider, date, slotLabel) {
     notesInput.value = "";
     confirmModal.show();
 }
+
+confirmBtn.addEventListener("click", () => {
+    if (!state.pendingSlot) return;
+
+const payload = {
+    id: crypto.randomUUID(),
+    providerId: state.pendingSlot.provider.id,
+    provider: state.pendingSlot.provider.name,
+    specialty: state.pendingSlot.provider.specialty,
+   
+    date: state.pendingSlot.date,
+    slot: state.pendingSlot.slotLabel,
+    notes: notesInput.value.trim(),
+};
+state.bookings.push(payload);
+});
