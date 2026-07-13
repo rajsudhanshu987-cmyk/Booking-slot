@@ -178,3 +178,11 @@ function renderSlots(providerId, date) {
     slotsGrid.appendChild(col);
   });
 }
+
+function openModal(provider, date, slotLabel) {
+    state.pendingSlot = { provider, date, slotLabel };
+    confirmTitle.textContent = provider.name;
+    confirmMeta.textContent = `${date} . ${slotLabel} IST`;
+    notesInput.value = "";
+    confirmModal.show();
+}
