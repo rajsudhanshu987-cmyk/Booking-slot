@@ -94,7 +94,7 @@ async function syncClock() {
     
     state.nowUtc = new Date(data.datetime);
 
-    
+   
     statClock.textContent = state.nowUtc.toLocaleTimeString("en-IN", {
       hour: "2-digit",
       minute: "2-digit",
@@ -105,10 +105,10 @@ async function syncClock() {
       "en-IN"
     )}`;
   } catch (err) {
-    
+   
     console.warn("Clock sync failed, falling back to client time", err);
 
-    state.nowUtc = new Date(); 
+    state.nowUtc = new Date(); // local time
     statClock.textContent = state.nowUtc.toLocaleTimeString("en-IN");
     lastSync.textContent = `Fallback to client ${new Date().toLocaleTimeString(
       "en-IN"
@@ -140,14 +140,14 @@ function buildSlots(date) {
 }
 
 function isSlotDisabled(date, slotLabel) {
- 
+  
   const targetDate = new Date(`${date}T${slotLabel}:00+05:30`);
   const now = state.nowUtc || new Date();
 
-  
+ 
   if (targetDate < now) return true;
 
- 
+  
   const alreadyBooked = state.bookings.some(
     (item) =>
       item.date === date &&
@@ -194,7 +194,7 @@ function renderSlots(providerId, date) {
       }</div>
     `;
 
-    
+   
     if (!slot.disabled) {
       card.onclick = () => openModal(provider, date, slot.label);
     }
@@ -246,4 +246,54 @@ function renderBookings() {
   }
 
   
-  
+  state.bookings
+    .slice()
+    .sort((a, b) => `${a.date}${a.slot}`.localeCompare(`${b.date}${b.slot}`))
+    .forEach((booking) => {
+      const card = document.createElement("div");
+      card.className = "booking-card";
+
+      card.innerHTML = `
+        <div class="d-flex justify-content-between align-items-start gap-3">
+          <div>
+            <div class="fw-semibold">${booking.provider}</div>
+            <div class="small text-secondary">${booking.date} · ${
+        booking.slot
+      }</div>
+            <div class="small text-muted">${booking.notes || "No notes"}</div>
+          </div>
+
+          <button class="btn btn-sm btn-outline-danger" data-id="${booking.id}">
+            <i class="bi bi-x"></i>
+          </button>
+        </div>
+      `;
+
+      // Remove booking on click
+      card.querySelector("button").onclick = () => cancelBooking(booking.id);
+
+      bookingsList.appendChild(card);
+    });
+}
+
+function cancelBooking(id) {
+  state.bookings = state.bookings.filter((booking) => booking.id !== id);
+  saveBookings();
+  renderBookings();
+
+  if (state.target) {
+    renderSlots(state.target.providerId, state.target.date);
+  }
+}
+
+clearBookingsBtn.addEventListener("click", () => {
+  if (!state.bookings.length) return;
+
+  if (confirm("Clear all stored bookings?")) {
+    state.bookings = [];
+    saveBookings();
+    renderBookings();
+    if (state.target) renderSlots(state.target.providerId, state.target.date);
+  }
+});
+
