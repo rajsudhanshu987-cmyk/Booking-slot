@@ -42,7 +42,7 @@ function readBookings() {
   state.bookings = JSON.parse(
     localStorage.getItem("quickslot-bookings") || "[]"
   );
-}
+ }
 
 function saveBookings() {
   localStorage.setItem("quickslot-bookings", JSON.stringify(state.bookings));
