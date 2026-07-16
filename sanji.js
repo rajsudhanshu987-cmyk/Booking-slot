@@ -297,3 +297,17 @@ clearBookingsBtn.addEventListener("click", () => {
   }
 });
 
+loadSlotsBtn.addEventListener("click", async () => {
+  const providerId = providerSelect.value;
+  const date = dateInput.value;
+
+  if (!providerId || !date) {
+    alert("Select provider and date");
+    return;
+  }
+
+  await syncClock(); // ensure time accuracy
+  renderSlots(providerId, date);
+});
+
+
