@@ -269,7 +269,7 @@ function renderBookings() {
         </div>
       `;
 
-      // Remove booking on click
+      
       card.querySelector("button").onclick = () => cancelBooking(booking.id);
 
       bookingsList.appendChild(card);
@@ -306,8 +306,26 @@ loadSlotsBtn.addEventListener("click", async () => {
     return;
   }
 
-  await syncClock(); // ensure time accuracy
+  await syncClock(); 
   renderSlots(providerId, date);
 });
 
+refreshBtn.addEventListener("click", async () => {
+  await syncClock();
+  if (state.target) renderSlots(state.target.providerId, state.target.date);
+});
+
+async function init() {
+  readBookings();
+  statBookings.textContent = state.bookings.length;
+
+  setMinDate(); 
+
+ 
+  await Promise.all([fetchProviders(), syncClock()]);
+
+  renderBookings();
+}
+
+document.addEventListener("DOMContentLoaded", init);
 
