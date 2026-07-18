@@ -46,7 +46,7 @@ function readBookings() {
 
 function saveBookings() {
   localStorage.setItem("quickslot-bookings", JSON.stringify(state.bookings));
-  statBookings.textContent = state.bookings.length; // Update dashboard stat
+  statBookings.textContent = state.bookings.length; 
 }
 
 async function fetchProviders() {
