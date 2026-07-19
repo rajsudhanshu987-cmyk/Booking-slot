@@ -27,7 +27,22 @@ const confirmTitle = document.getElementById("confirmTitle");
 const confirmMeta = document.getElementById("confirmMeta");
 const confirmBtn = document.getElementById("confirmBtn");
 const notesInput = document.getElementById("notesInput");
+const loginPage = document.getElementById("loginPage");
+const appPage = document.getElementById("appPage");
+const loginForm = document.getElementById("loginForm");
+const emailInput = document.getElementById("emailInput");
+const passwordInput = document.getElementById("passwordInput");
+const rememberMe = document.getElementById("rememberMe");
+const loginError = document.getElementById("loginError");
+const demoAccessLink = document.getElementById("demoAccessLink");
+const logoutBtn = document.getElementById("logoutBtn");
+const userLabel = document.getElementById("userLabel");
 
+const authConfig = {
+  validEmail: "user@quickslot.com",
+  validPassword: "DemoPass123",
+  displayName: "QuickSlot User",
+};
 
 const state = {
   providers: [], 
@@ -35,7 +50,7 @@ const state = {
   target: null, 
   bookings: [], 
   pendingSlot: null, 
-};
+
 
 function readBookings() {
   
@@ -297,6 +312,15 @@ clearBookingsBtn.addEventListener("click", () => {
   }
 });
 
+loginForm.addEventListener("submit", handleLoginSubmit);
+
+demoAccessLink.addEventListener("click", (event) => {
+  event.preventDefault();
+  signIn({ name: authConfig.displayName, email: authConfig.validEmail }, true);
+});
+
+logoutBtn.addEventListener("click", logout);
+
 loadSlotsBtn.addEventListener("click", async () => {
   const providerId = providerSelect.value;
   const date = dateInput.value;
@@ -316,15 +340,12 @@ refreshBtn.addEventListener("click", async () => {
 });
 
 async function init() {
-  readBookings();
-  statBookings.textContent = state.bookings.length;
+  hydrateSession();
+  updateAuthUI();
 
-  setMinDate(); 
-
- 
-  await Promise.all([fetchProviders(), syncClock()]);
-
-  renderBookings();
+  if (state.user) {
+    initApp();
+  }
 }
 
 document.addEventListener("DOMContentLoaded", init);
