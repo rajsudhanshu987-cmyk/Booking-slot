@@ -50,6 +50,16 @@ const state = {
   target: null, 
   bookings: [], 
   pendingSlot: null, 
+  user: null,
+};
+
+function getStoredUser() {
+  return (
+    JSON.parse(localStorage.getItem("quickslot-user") || "null") ||
+    JSON.parse(sessionStorage.getItem("quickslot-user") || "null")
+  );
+}
+
 
 
 function readBookings() {
