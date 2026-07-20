@@ -60,8 +60,12 @@ function getStoredUser() {
   );
 }
 
-
-
+function saveUserSession(user, remember) {
+  state.user = user;
+  if (remember) {
+    localStorage.setItem("quickslot-user", JSON.stringify(user));
+    sessionStorage.removeItem("quickslot-user");
+  } 
 function readBookings() {
   
   state.bookings = JSON.parse(
