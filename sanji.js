@@ -65,7 +65,13 @@ function saveUserSession(user, remember) {
   if (remember) {
     localStorage.setItem("quickslot-user", JSON.stringify(user));
     sessionStorage.removeItem("quickslot-user");
-  } 
+  } else {
+    sessionStorage.setItem("quickslot-user", JSON.stringify(user));
+    localStorage.removeItem("quickslot-user");
+  }
+}
+
+
 function readBookings() {
   
   state.bookings = JSON.parse(
