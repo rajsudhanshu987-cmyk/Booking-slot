@@ -71,6 +71,12 @@ function saveUserSession(user, remember) {
   }
 }
 
+function clearUserSession() {
+  localStorage.removeItem("quickslot-user");
+  sessionStorage.removeItem("quickslot-user");
+  state.user = null;
+}
+
 
 function readBookings() {
   
