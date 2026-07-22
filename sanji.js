@@ -77,6 +77,11 @@ function clearUserSession() {
   state.user = null;
 }
 
+function showLoginError(message) {
+  loginError.textContent = message;
+  loginError.classList.remove("d-none");
+}
+
 
 function readBookings() {
   
