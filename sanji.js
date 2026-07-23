@@ -82,6 +82,12 @@ function showLoginError(message) {
   loginError.classList.remove("d-none");
 }
 
+function clearLoginError() {
+  loginError.textContent = "";
+  loginError.classList.add("d-none");
+}
+
+
 
 function readBookings() {
   
