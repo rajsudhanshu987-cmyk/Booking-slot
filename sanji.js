@@ -367,7 +367,7 @@ loadSlotsBtn.addEventListener("click", async () => {
     return;
   }
 
-  await syncClock(); 
+  await syncClock();
   renderSlots(providerId, date);
 });
 
@@ -376,12 +376,20 @@ refreshBtn.addEventListener("click", async () => {
   if (state.target) renderSlots(state.target.providerId, state.target.date);
 });
 
+function hydrateSession() {
+  const savedUser = getStoredUser();
+  if (savedUser) {
+    state.user = savedUser;
+  }
+}
+
+
 async function init() {
   hydrateSession();
   updateAuthUI();
 
   if (state.user) {
-    initApp();
+    await initApp();
   }
 }
 
