@@ -389,6 +389,21 @@ function hydrateSession() {
   }
 }
 
+function updateAuthUI() {
+  if (state.user) {
+    loginPage.classList.add("d-none");
+    appPage.classList.remove("d-none");
+    logoutBtn.classList.remove("d-none");
+    userLabel.textContent = state.user.name || authConfig.displayName;
+    clearLoginError();
+  } else {
+    loginPage.classList.remove("d-none");
+    appPage.classList.add("d-none");
+    logoutBtn.classList.add("d-none");
+    userLabel.textContent = authConfig.displayName;
+  }
+}
+
 
 async function init() {
   hydrateSession();
