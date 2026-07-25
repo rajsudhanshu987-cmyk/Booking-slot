@@ -87,7 +87,9 @@ function clearLoginError() {
   loginError.classList.add("d-none");
 }
 
-
+function sendConfirmationEmail(payload) {
+  console.log("Demo confirmation email prepared for:", payload);
+}
 
 function readBookings() {
   
@@ -351,10 +353,14 @@ clearBookingsBtn.addEventListener("click", () => {
 
 loginForm.addEventListener("submit", handleLoginSubmit);
 
-demoAccessLink.addEventListener("click", (event) => {
-  event.preventDefault();
+function handleDemoAccess(event) {
+  if (event) {
+    event.preventDefault();
+  }
   signIn({ name: authConfig.displayName, email: authConfig.validEmail }, true);
-});
+}
+
+demoAccessLink.addEventListener("click", handleDemoAccess);
 
 logoutBtn.addEventListener("click", logout);
 
