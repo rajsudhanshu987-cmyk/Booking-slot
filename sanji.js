@@ -404,6 +404,13 @@ function updateAuthUI() {
   }
 }
 
+function signIn(user, remember) {
+  state.user = {
+    name: user.name || authConfig.displayName,
+    email: user.email || authConfig.validEmail,
+  };
+
+  
 
 async function init() {
   hydrateSession();
