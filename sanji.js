@@ -410,6 +410,15 @@ function signIn(user, remember) {
     email: user.email || authConfig.validEmail,
   };
 
+  saveUserSession(state.user, remember);
+  updateAuthUI();
+  initApp();
+}
+
+function handleLoginSubmit(event) {
+  event.preventDefault();
+  clearLoginError();
+
   
 
 async function init() {
