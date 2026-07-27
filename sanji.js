@@ -419,8 +419,16 @@ function handleLoginSubmit(event) {
   event.preventDefault();
   clearLoginError();
 
-  
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+  const remember = rememberMe.checked;
 
+  if (!email || !password) {
+    showLoginError("Please enter both email and password.");
+    return;
+  }
+
+  
 async function init() {
   hydrateSession();
   updateAuthUI();
