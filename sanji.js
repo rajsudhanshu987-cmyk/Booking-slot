@@ -450,7 +450,21 @@ function logout() {
   clearLoginError();
 }
 
+async function initApp() {
+  readBookings();
+  saveBookings();
+  setMinDate();
 
+  await syncClock();
+  await fetchProviders();
+  renderBookings();
+
+  if (state.target) {
+    renderSlots(state.target.providerId, state.target.date);
+  } else {
+    slotsGrid.innerHTML = `<div class="col-12 text-center text-secondary">Select a provider and date to view availability.</div>`;
+  }
+}
 
 async function init() {
   hydrateSession();
