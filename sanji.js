@@ -428,6 +428,16 @@ function handleLoginSubmit(event) {
     return;
   }
 
+  if (
+    email.toLowerCase() !== authConfig.validEmail.toLowerCase() ||
+    password !== authConfig.validPassword
+  ) {
+    showLoginError(
+      "Invalid credentials. Try user@quickslot.com with password DemoPass123."
+    );
+    return;
+  }
+
   
 async function init() {
   hydrateSession();
