@@ -438,7 +438,20 @@ function handleLoginSubmit(event) {
     return;
   }
 
-  
+  signIn({ name: authConfig.displayName, email }, remember);
+}
+
+function logout() {
+  clearUserSession();
+  updateAuthUI();
+  emailInput.value = "";
+  passwordInput.value = "";
+  rememberMe.checked = false;
+  clearLoginError();
+}
+
+
+
 async function init() {
   hydrateSession();
   updateAuthUI();
